@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/eatmoreapple/openwechat"
+	"github.com/skip2/go-qrcode"
 	"github.com/yxw21/chatgpt"
 )
 
@@ -17,7 +18,7 @@ func Run() {
 	// 注册消息处理函数
 	bot.MessageHandler = MessageHandler
 	// 注册登陆二维码回调
-	bot.UUIDCallback = openwechat.PrintlnQrcodeUrl
+	bot.UUIDCallback = ConsoleQrCode
 
 	// 登陆
 	if err := bot.Login(); err != nil {
@@ -30,10 +31,10 @@ func Run() {
 }
 
 func MessageHandler(msg *openwechat.Message) {
-	if msg.IsComeFromGroup() && msg.IsText() {
+	if !msg.IsComeFromGroup() && msg.IsText() {
 		sender, err := msg.Sender()
 		if err != nil {
-			Logger.Printf("handle msg fail, msg from: %s, content: %s, err: %v", msg.FromUserName, msg.Content, err)
+			Logger.Printf("handle msg fail, content: %s, err: %v", msg.Content, err)
 			return
 		}
 		if sender.IsSelf() {
@@ -46,10 +47,19 @@ func MessageHandler(msg *openwechat.Message) {
 		res, err := Chats[senderID].Send(msg.Content)
 		if err != nil {
 			_, _ = msg.ReplyText(ErrMsg)
-			Logger.Printf("handle msg fail, msg from: %s, content: %s, err: %v", msg.FromUserName, msg.Content, err)
+			Logger.Printf("handle msg fail, msg from: %s, content: %s, err: %v", sender.NickName, msg.Content, err)
 		} else {
 			_, _ = msg.ReplyText(res.Message.Content.Parts[0])
-			Logger.Printf("handle msg success, msg from: %s, content: %s, reply: %s", msg.FromUserName, msg.Content, res.Message.Content.Parts[0])
+			Logger.Printf("handle msg success, msg from: %s, content: %s, reply: %s", sender.NickName, msg.Content, res.Message.Content.Parts[0])
 		}
 	}
+}
+
+func ConsoleQrCode(uuid string) {
+	println("访问下面网址或直接扫描二维码登录")
+	qrcodeUrl := openwechat.GetQrcodeUrl(uuid)
+	println(qrcodeUrl)
+
+	q, _ := qrcode.New("https://login.weixin.qq.com/l/"+uuid, qrcode.Medium)
+	fmt.Println(q.ToString(true))
 }
