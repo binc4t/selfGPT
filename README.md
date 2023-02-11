@@ -1,8 +1,10 @@
 # selfGPT
 
-让自己变身 chatGPT 跟好友愉快玩耍吧
+让自己变身 chatGPT 跟好友愉快玩耍吧！
 
+<p align="center">
 <img src="https://user-images.githubusercontent.com/99850403/218237144-2a78afcc-76a9-46b2-9341-5feaac99e5fe.png"  width="540" height="1131">
+</p>
 
 
 
