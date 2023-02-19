@@ -1,27 +1,29 @@
 # selfGPT
 
-变身 chatGPT ，让好友大吃一惊！
+[简体中文](README_zh_CN.md)
+
+Transform into ChatGPT and surprise your friends with your impressive abilities!
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/99850403/218237144-2a78afcc-76a9-46b2-9341-5feaac99e5fe.png"  width="540" height="1131">
+<img src="https://user-images.githubusercontent.com/99850403/219956652-a3815049-2058-4338-926a-b3b604c9950b.jpg"  width="540" height="1131">
 </p>
 
 
 
-## 使用
-只能在Linux运行，需要Go 1.19或更新版本
+## Usage 
+Only run on Linux, and requires Go 1.19 or later 
 
-安装
+Installation
 ```
 go install github.com/anccy/selfGPT@latest
 ```
 
-或者从源码构建
+or build from souce
 ```
 go build
 ```
 
-编辑 conf.json, 设置成你自己的openAI信息, 其中user_name 和 access_token 可以在这里找到 https://chat.openai.com/api/auth/session
+Please edit the `conf.json` file and set it to your own OpenAI information. You can find your `user_name` and `access_token` at https://chat.openai.com/api/auth/session
 ```json
 {
   "chat_gpt_user_name": "example@gmail.com",
@@ -30,16 +32,14 @@ go build
 }
 ```
 
-运行
+Run
 ```
 selfGPT
 ```
 
-运行后会弹出二维码，扫码登陆即可
+After executing, a two-dimensional barcode will be displayed. Scan it to log in.
 
-
-
-## 依赖
+## Dependence
 xvfb
 ```
 apt install xvfb
@@ -50,9 +50,9 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt install ./google-chrome-stable_current_amd64.deb
 ```
 
-## 致谢
-这个项目是 [wechatGPT](https://github.com/yxw21/wechatgpt) 的阉割版
+## Acknowledgment
+This project is a simple version of [wechatGPT](https://github.com/yxw21/wechatgpt)
 
-微信接口调用了 [openwechat](https://github.com/eatmoreapple/openwechat)
+Tanks to this wechat sdk [openwechat](https://github.com/eatmoreapple/openwechat)
 
-谢谢！
+Have fun!
