@@ -53,6 +53,6 @@ apt install ./google-chrome-stable_current_amd64.deb
 ## Acknowledgment
 This project is a simple version of [wechatGPT](https://github.com/yxw21/wechatgpt)
 
-Tanks to this wechat sdk [openwechat](https://github.com/eatmoreapple/openwechat)
+Thanks to this wechat sdk [openwechat](https://github.com/eatmoreapple/openwechat)
 
 Have fun!
